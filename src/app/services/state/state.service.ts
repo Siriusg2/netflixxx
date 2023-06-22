@@ -19,4 +19,7 @@ export class StateService {
   setUsers(users: User[]): void {
     this.users = users;
   }
+  setUser(user: User): void {
+    this.user = user;
+  }
 }
