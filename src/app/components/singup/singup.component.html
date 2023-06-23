@@ -1,0 +1,36 @@
+<div class="container-sm">
+    <form [formGroup]="myForm" class="form-floating" (ngSubmit)="onSubmit()">
+        <h3>Inicia Sesion</h3>
+        <div class="form-floating mb-3">
+            <input type="email" class="form-control is-invalid" id="email" value="name@example.com"
+                placeholder="name@example.com" formControlName="email"
+                [ngClass]="{'is-invalid': myForm.controls['email'].invalid && myForm.controls['email'].touched}">
+            <label for="email">Email address</label>
+
+            <div *ngIf="myForm.controls['email'].touched && myForm.controls['email'].invalid">
+                <label for="email" *ngIf="myForm.controls['email'].errors?.['required']">Email is required.</label>
+                <label for="email" *ngIf="myForm.controls['email'].errors?.['email']">Invalid email format.</label>
+            </div>
+
+        </div>
+        <div class="form-floating mb-3">
+
+            <input type="password" class="form-control" id="password" placeholder="Password" formControlName="password"
+                [ngClass]="{'is-invalid': myForm.controls['password'].invalid && myForm.controls['password'].touched}"
+                autocomplete="current-password">
+            <label for="password">Password</label>
+        </div>
+        <div *ngIf="myForm.controls['password'].touched && myForm.controls['password'].invalid">
+            <p *ngIf="myForm.controls['password'].errors?.['required']">Password is required.</p>
+
+            <p *ngIf="myForm.controls['password'].errors?.['minlength']">Password must be at least 6 characters
+                long.
+            </p>
+            <p *ngIf="myForm.controls['password'].errors?.['maxlength']">Password must be max 20 characters
+                long.
+            </p>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
