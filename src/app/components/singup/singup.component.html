@@ -51,7 +51,7 @@
         </div>
         <select class="form-select form-select-sm mb-3" aria-label="Default select example" formControlName="plan">
             <option disabled selected value="">Selecciona un plan</option>
-            <option *ngFor="let plan of plans" [value]="plan.id">{{ plan }}</option>
+            <option *ngFor="let plan of plans" [value]="plan.id">{{ plan.name }}</option>
 
         </select>
         <div *ngIf="myForm.controls['plan'].touched && myForm.controls['plan'].invalid">

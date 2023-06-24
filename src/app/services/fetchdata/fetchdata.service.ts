@@ -42,6 +42,8 @@ export class FetchdataService {
         this.state.roles = rolesData;
         this.state.payments = paymentsData;
         this.state.profiles = profilesData;
+        this.state.dataLoaded = true;
+        this.state.dataLoadedSubject.next(true);
       });
   }
 }

@@ -37,16 +37,10 @@ export class UsersService {
     );
   }
 
-  singup(
-    email: string,
-    password: string,
-    dateBorn: string,
-    plan: string,
-    role: string
-  ) {
-    const newUserData = { email, password, dateBorn, plan, role };
+  singup(email: string, password: string, dateBorn: string, plan: string) {
+    const newUserData = { email, password, dateBorn, plan };
 
-    this.httpClient.post('users/login', newUserData).subscribe(
+    this.httpClient.post('users/save-user', newUserData).subscribe(
       (data: any) => {
         const user: User = {
           id: data.id,

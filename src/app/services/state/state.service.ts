@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Content } from '../../interfaces/content';
 import { Plan } from '../../interfaces/plan';
 import { Profile } from '../../interfaces/profile';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { User } from '../../interfaces/user';
 import { Payments } from 'src/app/interfaces/payments';
 import { Role } from 'src/app/interfaces/role';
@@ -11,6 +11,9 @@ import { Role } from 'src/app/interfaces/role';
   providedIn: 'root',
 })
 export class StateService {
+  dataLoadedSubject: Subject<boolean> = new Subject<boolean>();
+  dataLoaded: boolean = false;
+
   planes: Plan[] = [];
   roles: Role[] = [];
   payments: Payments[] = [];
@@ -21,13 +24,6 @@ export class StateService {
   isloaded: boolean = false;
   constructor() {}
 
-  changeIsloaded() {
-    if (this.isloaded) {
-      this.isloaded = false;
-    } else {
-      this.isloaded = true;
-    }
-  }
   setUsers(users: User[]): void {
     this.users = users;
     this.isloaded = false;
