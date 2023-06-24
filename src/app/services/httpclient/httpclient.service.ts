@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class HttpClientService {
-  baseUrl = 'http://localhost:5000'; // Configura la URL base que desees utilizar
+  baseUrl = 'http://localhost:5000';
 
   constructor(private http: HttpClient) {}
 
@@ -21,6 +21,4 @@ export class HttpClientService {
   delete(url: string) {
     return this.http.get(`${this.baseUrl}/${url}`);
   }
-
-  // Implementa otros métodos HTTP según tus necesidades (post, put, delete, etc.)
 }

@@ -1,6 +1,9 @@
-<div class="container-sm">
+<div class="container-sm" style="margin-top: 25%;">
+
+
+
     <form [formGroup]="myForm" class="form-floating" (ngSubmit)="onSubmit()">
-        <h3>Inicia Sesion</h3>
+        <h3>Registrate</h3>
         <div class="form-floating mb-3">
             <input type="email" class="form-control is-invalid" id="email" value="name@example.com"
                 placeholder="name@example.com" formControlName="email"
@@ -8,8 +11,10 @@
             <label for="email">Email address</label>
 
             <div *ngIf="myForm.controls['email'].touched && myForm.controls['email'].invalid">
-                <label for="email" *ngIf="myForm.controls['email'].errors?.['required']">Email is required.</label>
-                <label for="email" *ngIf="myForm.controls['email'].errors?.['email']">Invalid email format.</label>
+                <label for="email" *ngIf="myForm.controls['email'].errors?.['required']">El correo electrónico es
+                    requerido</label>
+                <label for="email" *ngIf="myForm.controls['email'].errors?.['email']">Formato de correo electronico
+                    invalido</label>
             </div>
 
         </div>
@@ -21,16 +26,45 @@
             <label for="password">Password</label>
         </div>
         <div *ngIf="myForm.controls['password'].touched && myForm.controls['password'].invalid">
-            <p *ngIf="myForm.controls['password'].errors?.['required']">Password is required.</p>
+            <p *ngIf="myForm.controls['password'].errors?.['required']">El campo Password es requerido</p>
 
-            <p *ngIf="myForm.controls['password'].errors?.['minlength']">Password must be at least 6 characters
+            <p *ngIf="myForm.controls['password'].errors?.['minlength']">La contraseña debe tener al menos 6 caracteres
                 long.
+            </p>
+            <p *ngIf="myForm.controls['password'].errors?.['maxlength']">La contraseña debe tener maximo 20 caracteres
+            </p>
+        </div>
+        <div class="form-floating mb-3">
+
+            <input type="date" class="form-control" id="dateBorn" placeholder="dateBorn" formControlName="dateBorn"
+                [ngClass]="{'is-invalid': myForm.controls['dateBorn'].invalid && myForm.controls['dateBorn'].touched}">
+            <label for="password">Fecha de Nacimiento</label>
+        </div>
+        <div *ngIf="myForm.controls['dateBorn'].touched && myForm.controls['dateBorn'].invalid">
+            <p *ngIf="myForm.controls['dateBorn'].errors?.['required']">La fecha de nacimiento es requerida.</p>
+
+            <p *ngIf="myForm.controls['password'].errors?.['pattern']">La fecha debe tener el formato "YYYY-MM-DD"
             </p>
             <p *ngIf="myForm.controls['password'].errors?.['maxlength']">Password must be max 20 characters
                 long.
             </p>
         </div>
+        <select class="form-select form-select-sm mb-3" aria-label="Default select example" formControlName="plan">
+            <option disabled selected value="">Selecciona un plan</option>
+            <option *ngFor="let plan of plans" [value]="plan.id">{{ plan }}</option>
 
+        </select>
+        <div *ngIf="myForm.controls['plan'].touched && myForm.controls['plan'].invalid">
+            <p *ngIf="myForm.controls['plan'].errors?.['required']">Debes seleccionar un plan</p>
+
+            <p *ngIf="myForm.controls['password'].errors?.['pattern']">La fecha debe tener el formato "YYYY-MM-DD"
+            </p>
+            <p *ngIf="myForm.controls['password'].errors?.['maxlength']">Password must be max 20 characters
+                long.
+            </p>
+        </div>
+        <br />
+        <br />
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>
