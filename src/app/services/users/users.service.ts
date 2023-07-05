@@ -54,6 +54,7 @@ export class UsersService {
           role: data.role,
           plan: data.plan,
         };
+        this.state.users.push(user);
       },
       (error: any) => {
         alert(error.error.message);
